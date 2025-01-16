@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use Yii;
+
 class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 {
     public $id;
@@ -100,5 +102,13 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     public function validatePassword($password)
     {
         return $this->password === $password;
+    }
+
+    /**
+     * Generates "remember me" authentication key
+     */
+    public function generateAuthKey()
+    {
+        $this->authKey = Yii::$app->security->generateRandomString();
     }
 }

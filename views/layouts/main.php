@@ -57,7 +57,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     . Html::endForm()
                     . '</li>',
 
-            $isGuest ? ['label' => 'Register', 'url' => ['/site/signup']] : '',
+            ['label' => 'Register', 'url' => ['/site/signup'], 'visible' => $isGuest],
         ]
     ]);
     NavBar::end();

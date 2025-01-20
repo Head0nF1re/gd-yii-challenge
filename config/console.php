@@ -1,7 +1,7 @@
 <?php
 
 $params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
+$commonConfig = require __DIR__ . '/common.php';
 
 $config = [
     'id' => 'basic-console',
@@ -25,7 +25,8 @@ $config = [
                 ],
             ],
         ],
-        'db' => $db,
+        'db' => $commonConfig['db'],
+        'authManager' => $commonConfig['components']['authManager'],
     ],
     'params' => $params,
     'controllerMap' => [

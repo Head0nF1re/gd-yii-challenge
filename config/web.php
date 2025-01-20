@@ -1,7 +1,7 @@
 <?php
 
 $params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
+$commonConfig = require __DIR__ . '/common.php';
 
 $config = [
     'id' => 'basic',
@@ -23,6 +23,7 @@ $config = [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
         ],
+        'authManager' => $commonConfig['components']['authManager'],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -41,7 +42,7 @@ $config = [
                 ],
             ],
         ],
-        'db' => $db,
+        'db' => $commonConfig['db'],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,

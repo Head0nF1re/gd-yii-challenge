@@ -21,3 +21,9 @@ composer install
 yii migrate/up
 yii seed
 ```
+
+5. Test user:
+```
+email: test@gmail.com
+password: pass1234
+```

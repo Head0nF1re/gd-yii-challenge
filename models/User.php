@@ -7,8 +7,6 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
-
-
 /**
  * Database fields:
  * 
@@ -31,6 +29,11 @@ use yii\web\IdentityInterface;
 class User extends ActiveRecord implements IdentityInterface
 {
     const SCENARIO_REGISTER = 'register';
+
+    public static function tableName()
+    {
+        return 'users';
+    }
     
     public function behaviors()
     {
@@ -73,12 +76,6 @@ class User extends ActiveRecord implements IdentityInterface
             return true;
         }
         return false;
-    }
-
-
-    public static function tableName()
-    {
-        return 'users';
     }
 
     /**
@@ -149,5 +146,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function generateAuthKey()
     {
         $this->auth_key = Yii::$app->security->generateRandomString();
+    }
+
+    public function getProperties()
+    {
+        return $this->hasMany(Property::class, ['id' => 'property_id'])
+            ->viaTable('user_property', ['user_id' => 'id']);
     }
 }
